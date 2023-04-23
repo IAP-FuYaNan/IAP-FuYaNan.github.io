@@ -3,17 +3,207 @@
 <head>
 	<title>个人主页</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			background-color: #f5f5f5;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 0;
+			padding: 0;
+		}
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 300px;
+		}
+		h1, h2 {
+			margin: 0;
+			font-weight: normal;
+		}
+		h1 {
+			font-size: 40px;
+		}
+		h2 {
+			font-size: 24px;
+			margin-top: 10px;
+		}
+		img {
+			display: block;
+			margin: 10px auto;
+			border-radius: 50%;
+			width: 150px;
+			height: 150px;
+			object-fit: cover;
+		}
+		nav {
+			background-color: #555;
+			color: #fff;
+			padding: 10px 0;
+			text-align: center;
+		}
+		nav a {
+			color: #fff;
+			text-decoration: none;
+			margin: 0 20px;
+			font-size: 20px;
+		}
+		nav a:hover {
+			color: #f5f5f5;
+			text-decoration: underline;
+		}
+		main {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+		article, section {
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			margin-bottom: 20px;
+			flex: 1 1 45%;
+			min-width: 300px;
+			max-width: calc(50% - 10px);
+		}
+		article:last-of-type, section:last-of-type {
+			margin-right: 0;
+		}
+		article h2, section h2 {
+			font-size: 24px;
+			margin-bottom: 10px;
+		}
+		article ul, section ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		article ul li, section ul li {
+			margin-bottom: 10px;
+		}
+		form {
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			position: relative;
+		}
+		form input, form textarea {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+			font-family: inherit;
+			font-size: inherit;
+			line-height: inherit;
+		}
+		form input[type="submit"] {
+			background-color: #555;
+			color: #fff;
+			cursor: pointer;
+		}
+		form input[type="submit"]:hover {
+			background-color: #333;
+		}
+		.overlay {
+			background-color: rgba(0, 0, 0, 0.5);
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.3s, visibility 0.3s;
+			z-index: 9999;
+		}
+		.overlay form {
+			max-width: 100%;
+			margin: 0;
+			box-shadow: none;
+			position: static;
+		}
+		.overlay input[type="submit"] {
+			width: 50%;
+		}
+		.overlay.show {
+			opacity: 1;
+			visibility: visible;
+		}
+		.close-button {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background-color: #555;
+			color: #fff;
+			border: none;
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			font-size: 20px;
+			line-height: 1;
+			text-align: center;
+			cursor: pointer;
+		}
+		.close-button:hover {
+			background-color: #333;
+		}
+		@media (max-width: 768px) {
+			header {
+				height: auto;
+			}
+			img {
+				width: 100px;
+				height: 100px;
+			}
+			main {
+				padding: 0;
+			}
+			article, section {
+				margin-bottom: 10px;
+			}
+			form input[type="submit"] {
+				width: 100%;
+			}
+			.overlay input[type="submit"] {
+				width: 80%;
+			}
+		}
+	</style>
 </head>
 <body>
 	<header>
 		<h1>欢迎来到我的个人主页</h1>
 		<img src="my_picture.png" alt="我的头像">
 		<h2>个人简介</h2>
-		<p>我是来自中国科学院大气物理研究所的付亚男。我喜欢科研，阅读和旅游。欢迎来信交流。</p>
+		<p>我是来自某某某地的某某某人。我喜欢编程，阅读和旅游。欢迎来信交流。</p>
 	</header>
 
+	<nav>
+		<a href="#article">最近发表的文章</a>
+		<a href="#award">获得的奖励</a>
+		<a href="#" class="open-contact-form">联系我</a>
+	</nav>
+
 	<main>
-		<article>
+		<article id="article">
 			<h2>最近发表的文章</h2>
 			<ul>
 				<li><a href="article_1.md">文章标题1</a></li>
@@ -22,7 +212,7 @@
 			</ul>
 		</article>
 
-		<section>
+		<section id="award">
 			<h2>获得的奖励</h2>
 			<ul>
 				<li>XXX竞赛第一名</li>
@@ -33,7 +223,35 @@
 	</main>
 
 	<footer>
-		<p>&copy; 2023 - 我的个人主页</p>
+		<p>&copy; 2021 - 我的个人主页</p>
 	</footer>
+
+	<div id="contact-form" class="overlay">
+		<form action="#" method="POST">
+			<button type="button" class="close-button">&times;</button>
+			<h2>联系我</h2>
+			<input type="text" name="name" placeholder="姓名" required>
+			<input type="email" name="email" placeholder="电子邮件" required>
+			<textarea name="message" placeholder="留言" rows="5" required></textarea>
+			<input type="submit" value="发送">
+		</form>
+	</div>
+
+	<script>
+		// 显示联系表单
+		var openContactForm = document.querySelector('.open-contact-form');
+		var contactFormOverlay = document.getElementById('contact-form');
+
+		openContactForm.addEventListener('click', function() {
+			contactFormOverlay.classList.add('show');
+		});
+
+		// 关闭联系表单
+		var closeContactForm = document.querySelector('.close-button');
+
+		closeContactForm.addEventListener('click', function() {
+			contactFormOverlay.classList.remove('show');
+		});
+	</script>
 </body>
 </html>
